@@ -1,4 +1,30 @@
 <section class="hero">
-  <h1>This is the NG6 starter</h1>
-  <h3>You can find me inside {{ $ctrl.name }}.html</h3>
+  <h1>Let's get started on your quote</h1>
+  <h3>We'll just need some information about you to provide you with a preliminary quote</h3>
+  <form class="quoteForm" name="$ctrl.quoteForm" ng-submit="$ctrl.performQuote()">
+    <label class="quoteForm__label">
+      <div class="quoteForm__label__value">name</div>
+      <!-- todo: directive to do custom validation against rules on inputs and sanitation-->
+      <input class="quoteForm__label__input" type="text" ng-model="$ctrl.customer.name" placeholder="name" ng-minlength="3" ng-maxlength="50" ng-disabled="$ctrl.quoteComplete" required>
+    </label>
+    <label class="quoteForm__label">
+      <div class="quoteForm__label__value">age</div>
+      <input class="quoteForm__label__input" type="number" ng-model="$ctrl.customer.age" placeholder="age" ng-disabled="$ctrl.quoteComplete" required>
+    </label>
+    <label class="quoteForm__label">
+      <div class="quoteForm__label__value">gender</div>
+      <select class="quoteForm__label__select" ng-model="$ctrl.customer.gender" ng-options="gender.name for gender in $ctrl.gender" value="$ctrl.customer.gender.default" ng-disabled="$ctrl.quoteComplete" required>
+        <option value="" selected="selected">Choose one</option>
+      </select>
+    </label>
+
+    <button class="quoteForm__submit" ng-class="{'quoteForm__submit-active': !$ctrl.disabled() }" type="submit" ng-disabled="$ctrl.disabled()">submit</button>
+  </form>
+
+  <!-- todo: split to separate component -->
+  <div class="quoteResult">
+    <h3 ng-if="$ctrl.quoteComplete">Your Quote</h3>
+    <div class="quoteResult__result">{{$ctrl.result}}</div>
+    <button ng-if="$ctrl.quoteComplete" ng-click="$ctrl.resetForm()">Start New Quote</button>
+  </div>
 </section>
