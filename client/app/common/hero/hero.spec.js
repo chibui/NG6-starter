@@ -5,6 +5,7 @@ import HeroTemplate from './hero.html';
 
 describe('Hero', () => {
   let $rootScope, makeController;
+  //todo: Im not familiar with mocha but in jasmine I whould usually inject all the required dependencies, compile the component I need to test and then mock the conditions and test against the expected outcomes by either comparing if the view is now rendering a specific element. You could also spy on a specific method to see if it was called unexpectedly.
 
   beforeEach(window.module(HeroModule));
   beforeEach(inject((_$rootScope_) => {
