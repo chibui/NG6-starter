@@ -5,7 +5,7 @@ module.exports = function (config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['jasmine-jquery', 'jasmine'],
 
     // list of files/patterns to load in the browser
     files: [{ pattern: 'spec.bundle.js', watched: false }],
@@ -14,9 +14,9 @@ module.exports = function (config) {
     exclude: [],
 
     plugins: [
-      require("karma-chai"),
+      require("karma-jasmine"),
+      require("karma-jasmine-jquery"),
       require("karma-chrome-launcher"),
-      require("karma-mocha"),
       require("karma-mocha-reporter"),
       require("karma-sourcemap-loader"),
       require("karma-webpack")

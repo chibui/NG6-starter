@@ -1,6 +1,6 @@
 <section class="quoteResult">
-  <h3>Thanks {{::$ctrl.name}}</h3>
+  <h3 class="quoteResult__gratitude">Thanks {{::$ctrl.name}}</h3>
   <h3>Your Quote is</h3>
   <div class="quoteResult__result">{{::($ctrl.result | currency) || 'not legible for quote'}}</div>
-  <button ng-click="$ctrl.resetQuote($ctrl.quoteForm)">Start New Quote</button>
+  <button class="quoteResults__restart" ng-click="$ctrl.resetQuote()">Start New Quote</button>
 </section>
