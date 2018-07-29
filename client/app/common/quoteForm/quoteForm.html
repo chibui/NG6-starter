@@ -1,0 +1,51 @@
+<section class="quoteForm">
+  <h1>Let's get started on your quote</h1>
+  <h3>We'll just need some information about you to provide you with a preliminary quote</h3>
+  <form ng-if="!$ctrl.quoteComplete" class="quoteForm" name="$ctrl.quoteForm" ng-submit="$ctrl.performQuote()" novalidate>
+    <label class="quoteForm__label" ng-class="{'invalid': $ctrl.quoteForm.name.$invalid && $ctrl.quoteForm.name.$dirty && $ctrl.quoteForm.name.$touched}">
+      <div class="quoteForm__label__value">name</div>
+      <input class="quoteForm__label__input"
+             type="text"
+             name="name"
+             ng-model="$ctrl.customer.name"
+             placeholder="name"
+             ng-minlength="3"
+             ng-maxlength="50"
+             ng-disabled="$ctrl.quoteComplete"
+             required>
+      <div class="quoteForm__validation-error">must be between 3-50 characters</div>
+    </label>
+
+    <label class="quoteForm__label" ng-class="{'invalid': $ctrl.quoteForm.age.$invalid && $ctrl.quoteForm.age.$dirty && $ctrl.quoteForm.age.$touched}">
+      <div class="quoteForm__label__value">age</div>
+      <input class="quoteForm__label__input"
+             type="number"
+             name="age"
+             ng-model="$ctrl.customer.age"
+             placeholder="age"
+             ng-disabled="$ctrl.quoteComplete"
+             min="18"
+             max="65"
+             required>
+      <div class="quoteForm__validation-error">Must be between 18 - 65 for a quote</div>
+    </label>
+
+    <label class="quoteForm__label" ng-class="{'invalid': $ctrl.quoteForm.gender.$touched && $ctrl.quoteForm.gender.$invalid}">
+      <div class="quoteForm__label__value">gender</div>
+      <select class="quoteForm__label__select"
+              name="gender"
+              ng-model="$ctrl.customer.gender"
+              ng-options="gender.name for gender in $ctrl.gender"
+              value="$ctrl.customer.gender.default"
+              ng-disabled="$ctrl.quoteComplete"
+              required>
+        <option value="" selected="selected">Choose one</option>
+      </select>
+      <div class="quoteForm__validation-error">Please select a gender</div>
+    </label>
+
+    <button class="quoteForm__submit" ng-class="{'quoteForm__submit-active': !$ctrl.disabled() }" type="submit" ng-disabled="$ctrl.disabled()">submit</button>
+  </form>
+
+  <result ng-if="$ctrl.quoteComplete" result="$ctrl.result" name="$ctrl.customer.name" reset-quote="$ctrl.resetForm()"></result>
+</section>
